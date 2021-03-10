@@ -1,8 +1,3 @@
-const hicri= require("./hicri-converter");
-
-
-
-
 
 /**
  * converter
@@ -10,14 +5,12 @@ const hicri= require("./hicri-converter");
  */
  function convertMiladi(pDate) {
      
-    let date = new Date(hicri.hicriConverter(pDate))
-     let options = {
-       year: 'numeric',
-        month: 'numeric',
-         day: 'numeric'
-     };
- console.log(date)
-    return date.toLocaleDateString('en', options);
+    let hijriYear = pDate.getFullYear();
+    let hijriMonth = pDate.getMonth();
+    let hijriDay = pDate.getDate();
+    let gregorianYear = Math.floor((hijriYear * 0.97) + 622) 
+    let gregorianDate= new Date(gregorianYear,hijriMonth,hijriDay).toLocaleDateString()
+    return gregorianDate
 }
 
 module.exports = {
